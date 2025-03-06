@@ -3,6 +3,8 @@ package com.devsenior.nmanja;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -152,18 +154,37 @@ public class Main {
         donde la lista pueda estar vacía.*/
 
         var numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        var numbers2 = Arrays.<Integer>asList();
 
 /*         var stream = numbers.stream();
         var stream2 = stream.mapToInt(Integer::intValue).average().orElse(0.0);
 
         System.out.println(stream2); */
 
-        var media = numbers.stream().mapToInt(Integer::intValue).average().orElse(0.0);
-       
-        var media2 = numbers.stream().collect(Collectors.averagingInt(Integer::intValue));
+        var media = numbers.stream()
+                .mapToInt(Integer::intValue) //Convierte de tipo Integer al tipo primitivo int al elemento dentro de la lista
+                .average() //Saca el promedio
+                .orElse(0.0); //Si no hay elementos en la lista, retorna este valor
+
+                
+        var media2 = numbers.stream()
+                .collect(Collectors //Recoge todos los elementos de la lista
+                        .averagingInt(Integer::intValue)); //Hace el promedio, validando que todo elemento de tipo integer dentro de la lista, ahora sea de tipo primitivo int
+
+        var mediaEmpty = numbers2.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
+
+                
+        var mediaEmpty2 = numbers2.stream()
+                .collect(Collectors
+                        .averagingInt(Integer::intValue));
 
         System.out.println("Media 1: "+ media);
         System.out.println("Media 2: "+ media2);
+        System.out.println("Media 1: "+ mediaEmpty);
+        System.out.println("Media 2: "+ mediaEmpty2);
         
 
     }
