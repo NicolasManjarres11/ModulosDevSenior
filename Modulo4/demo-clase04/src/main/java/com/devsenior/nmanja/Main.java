@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        exercise04Stream();
+        exercise08Stream();
     }
 
     //Clase interna
@@ -154,7 +156,7 @@ public class Main {
         donde la lista pueda estar vacía.*/
 
         var numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        var numbers2 = Arrays.<Integer>asList();
+        List<Integer> numbers2 = Arrays.asList();
 
 /*         var stream = numbers.stream();
         var stream2 = stream.mapToInt(Integer::intValue).average().orElse(0.0);
@@ -164,7 +166,14 @@ public class Main {
         var media = numbers.stream()
                 .mapToInt(Integer::intValue) //Convierte de tipo Integer al tipo primitivo int al elemento dentro de la lista
                 .average() //Saca el promedio
-                .orElse(0.0); //Si no hay elementos en la lista, retorna este valor
+                /* .orElse(0.0) */; //Si no hay elementos en la lista, retorna este valor
+
+                if(media.isPresent()){
+
+                    System.out.println("El promedio de los numeros es: "+ media.getAsDouble());
+                } else {
+                    System.out.println("La lista esta vacia");
+                }
 
                 
         var media2 = numbers.stream()
@@ -173,13 +182,20 @@ public class Main {
 
         var mediaEmpty = numbers2.stream()
                 .mapToInt(Integer::intValue)
-                .average()
-                .orElse(0.0);
+                .average();
 
                 
         var mediaEmpty2 = numbers2.stream()
                 .collect(Collectors
                         .averagingInt(Integer::intValue));
+
+        if(mediaEmpty.isPresent()){
+
+            System.out.println("El promedio de los numeros es: "+ mediaEmpty.getAsDouble());
+        } else {
+            System.out.println("La lista esta vacia");
+        }
+
 
         System.out.println("Media 1: "+ media);
         System.out.println("Media 2: "+ media2);
@@ -188,5 +204,121 @@ public class Main {
         
 
     }
+
+    public static void exercise05Stream(){
+
+        var words = Arrays.asList("Java", "Streams", "are", "powerful");
+
+        var result = words.stream()
+        .collect(Collectors.joining(" "));
+
+        System.out.println(result);
+    }
+
+    private static class Venta{
+
+        private String producto;
+        private Integer cantidad;
+        private Double precioUnidad;
+
+        
+
+        public Venta(String producto, Integer cantidad, Double precioUnidad) {
+            this.producto = producto;
+            this.cantidad = cantidad;
+            this.precioUnidad = precioUnidad;
+        }
+
+        public String getProducto() {
+            return producto;
+        }
+
+        public void setProducto(String producto) {
+            this.producto = producto;
+        }
+
+        public Integer getCantidad() {
+            return cantidad;
+        }
+
+        public void setCantidad(Integer cantidad) {
+            this.cantidad = cantidad;
+        }
+
+        public Double getPrecioUnidad() {
+            return precioUnidad;
+        }
+
+        public void setPrecioUnidad(Double precioUnidad) {
+            this.precioUnidad = precioUnidad;
+        }
+
+
+
+    }
+
+
+    public static void exercise06Stream(){
+
+        var ventas = Arrays.asList(
+        new Venta("ProductoA", 10, 12.5),
+        new Venta("ProductoB", 5, 25d),
+        new Venta("ProductoA", 7, 15d),
+        new Venta("ProductoC", 20, 4d),
+        new Venta("ProductoB", 2, 30d));
+
+        var result = ventas.stream()
+            .filter(v -> v.getCantidad() * v.precioUnidad > 100)
+            .collect(
+                Collectors.groupingBy(
+                    Venta::getProducto, 
+                Collectors.summingDouble(v -> v.getCantidad() * v.getPrecioUnidad())));
+
+        result.entrySet().stream()
+            .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+            .forEach(e -> System.out.println("Producto:" +e.getKey() + " Cantidad: "+e.getValue()));
+    }
+
+    public static void exercise07Stream(){
+
+    }
+
+    public static void exercise08Stream(){
+
+
+        var texto = """
+        Dado un párrafo de texto convierte el texto en una lista de palabras y elimina las palabras repetidas. 
+        Luego agrupa las palabras por su longitud y muestra cada grupo de palabras junto con la cantidad de palabras en ese grupo.
+        Finalmente encuentra la palabra más larga en el texto y muéstrala por pantalla.
+        """;
+
+        var palabrasUnicas = Stream.of(texto.replaceAll("\n", " ")
+                .replace('.', '\0')
+                .split(" "))
+                .collect(Collectors.toSet());
+        
+        var palabrasPorLongitud = palabrasUnicas.stream()
+                .collect(Collectors.groupingBy(String::length));
+
+        palabrasPorLongitud.forEach((l,p) -> {
+            System.out.printf("Longitud: %d, Palabras: %d %n",l,p.size());
+        });
+
+        var palabraMasLarga = palabrasPorLongitud.entrySet().stream()
+                .sorted(Map.Entry.<Integer, List<String>>comparingByKey().reversed())
+                .findFirst();
+
+                if(palabraMasLarga.isPresent()){
+                    palabraMasLarga.get().getValue().stream()
+                    .findFirst()
+                    .ifPresent(System.out::println);
+                }
+
+        
+
+    }
+
+
+
 
 }
