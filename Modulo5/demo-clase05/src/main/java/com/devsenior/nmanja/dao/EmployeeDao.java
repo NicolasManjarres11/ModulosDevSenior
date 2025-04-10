@@ -185,7 +185,7 @@ public class EmployeeDao {
 
     public Employee findEmployeeById(Integer id){
 
-        var employees = new Employee();
+        var employee = new Employee();
 
         var url = "jdbc:postgresql://localhost:5432/RH";
         var user = "postgres";
@@ -194,16 +194,17 @@ public class EmployeeDao {
         try(
             
         Connection conn = DriverManager.getConnection(url,user,password);
-        var stmnt = conn.prepareStatement("select * from Employees where id = ?");
-        var rset =stmnt.executeQuery();
+        var stmnt = conn.prepareStatement("select * from Employees where employee_id = ?");
+        
 
         ){
 
             stmnt.setInt(1, id);
-            stmnt.execute();
+            /* stmnt.execute(); */
+            var rset =stmnt.executeQuery();
 
             while(rset.next()){
-                var employee = new Employee();
+                
 
                 employee.setEmployeeId(rset.getInt("employee_id"));
                 employee.setFirstName(rset.getString("first_name"));
@@ -219,14 +220,14 @@ public class EmployeeDao {
 
             }
 
-        System.out.println("Empleados listados correctamente");
+        System.out.println("Empleado encontrado correctamente correctamente");
         
     } catch(SQLException e){
-        System.out.println("Error al listar los empleados "+ e.getMessage());
+        System.out.println("Error al buscar el empleado con id "+ id +" "+ e.getMessage());
     }
 
 
         
-        return employees;
+        return employee;
     }
 }

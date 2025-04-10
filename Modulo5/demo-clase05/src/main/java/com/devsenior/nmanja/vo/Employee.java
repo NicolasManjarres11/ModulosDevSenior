@@ -82,7 +82,18 @@ public class Employee {
     @Override
     public String toString() {
 
-        return" Soy el empleado con id " + employeeId;
+        return String.format("""
+                ID: %d
+                First Name: %s
+                Last Name: %s
+                Email: %s
+                Phone Number: %s
+                Hire Date: %s
+                Job ID: %d
+                Salary: %d
+                Manager ID: %d
+                Department ID: %d
+                """, employeeId, firstName, lastName, email, phoneNumber, hireDate, jobId, salary, managerId, departmentId);
 
     }
 

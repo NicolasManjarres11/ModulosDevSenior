@@ -42,7 +42,7 @@ public class Main {
 
         /* employeeDao.findAllEmployees().forEach(System.out::println); */
 
-        var empleado = employeeDao.findEmployeeById(193);
+        var empleado = employeeDao.findEmployeeById(100);
         System.out.println(empleado);
 
 
