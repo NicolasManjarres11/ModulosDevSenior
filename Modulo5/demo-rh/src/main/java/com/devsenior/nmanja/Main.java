@@ -45,9 +45,25 @@ public class Main {
         departmentDao.update(1, department);
         employeDao.update(3, employee);
 
+        //Prueba Delete
+
+        departmentDao.delete(13);
+
+        //Prueba FindAll
+
+        employeDao.findAll().forEach(System.out::println);
+        departmentDao.findAll().forEach(System.out::println);
+
+        //Prueba FindById
+
+                var empleado = employeDao.findbyId(300);
+        System.out.println(empleado);
  */
 
-        
+        var dp = departmentDao.findbyId(90);
+        System.out.println(dp);
+
+
 
     }
 

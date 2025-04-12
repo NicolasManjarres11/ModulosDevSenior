@@ -3,6 +3,7 @@ package com.devsenior.nmanja.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 public abstract class AbstractDao<E, ID> {
 
@@ -20,11 +21,11 @@ public abstract class AbstractDao<E, ID> {
 
     public abstract void update(ID id, E e);
 
-    public abstract void delete();
+    public abstract void delete(ID id);
 
-    public abstract void findAll();
+    public abstract List<E> findAll();
 
-    public abstract void findbyId();
+    public abstract E findbyId(ID id);
 
 
 

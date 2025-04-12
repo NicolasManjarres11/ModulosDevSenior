@@ -1,8 +1,11 @@
 package com.devsenior.nmanja.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.devsenior.nmanja.vo.Department;
+import com.devsenior.nmanja.vo.Employee;
 
 public class DepartmentDao extends AbstractDao<Department, Integer>{
 
@@ -67,23 +70,92 @@ public class DepartmentDao extends AbstractDao<Department, Integer>{
     }
 
     @Override
-    public void delete() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public void delete(Integer id) {
+        try(
+            var conn = getConnection();
+            var stmt = conn.prepareStatement("DELETE FROM public.departments WHERE department_id= ?;");
+        ){
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+            System.out.println("Departamento eliminado correctamente.");
+
+        } catch(SQLException e){
+            System.out.println("Error al eliminar Departamento: "+e);
+        }
+
     }
 
     @Override
-    public void findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    public List<Department> findAll() {
+
+        var departments = new ArrayList<Department>();
+
+        try(
+            var conn = getConnection();
+            var stmt = conn.prepareStatement("select * from departments");
+            var rst = stmt.executeQuery();
+        ) {
+            
+
+            while(rst.next()){
+            
+                var department = new Department();
+
+                department.setDepartmentId(rst.getInt("department_id"));
+                department.setDepartmentName(rst.getString("department_name"));
+                department.setLocationId(rst.getInt("location_id"));
+                
+                departments.add(department);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al listar departamentos: "+ e);
+        }
+
+        return departments;
+
     }
 
     @Override
-    public void findbyId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findbyId'");
+    public Department findbyId(Integer id) {
+    
+        Department department = null;
+
+        try(
+            var conn = getConnection();
+            var stmt = conn.prepareStatement("select * from departments where department_id=?");
+
+
+        ){
+
+            stmt.setInt(1, id);
+            var rset = stmt.executeQuery();
+            
+
+
+            
+            if(rset.next()){
+                department = new Department();
+
+                department.setDepartmentId(rset.getInt("department_id"));
+                department.setDepartmentName(rset.getString("department_name"));
+                department.setLocationId(rset.getInt("location_id"));
+
+            } else{
+                System.out.println("No se encontró el departamento con ID: "+ id);
+            }
+
+
+        }catch(SQLException e){
+            System.out.println("Error al buscar departamento por ID: "+e);
+        }
+        
+        
+        
+        return department;
     }
 
+    }
 
-
-}
