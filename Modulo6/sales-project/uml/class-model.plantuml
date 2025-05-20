@@ -1,0 +1,36 @@
+@startuml Data Model
+class Client{
+  Long id;
+  String name;
+  String email;
+  String phone;
+  LocalDate hireDate;
+
+  void setName(String name);
+}
+class Order{
+  Long id;
+  LocalDate date;
+  Double total;
+  OrderStatus status;
+
+}
+class Product{
+  Long id;
+  String name;
+  Double price;
+  String description;
+}
+
+enum OrderStatus{
+  PENDING
+  SENT
+  RECEIVED
+}
+
+Order -right-> OrderStatus
+Client "1" -- "*" Order
+Order "1" -- "*" Product
+
+
+@enduml
