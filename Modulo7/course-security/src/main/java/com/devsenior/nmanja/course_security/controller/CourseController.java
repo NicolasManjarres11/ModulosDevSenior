@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,23 +30,28 @@ public class CourseController {
 
     private final CourseService courseService;
 
-    @GetMapping("path")
+    
+    @GetMapping
     public List<CourseDto> getAll() {
         return courseService.getAllCourses();
     }
 
-    @GetMapping("path")
-    public CourseDto getById(Long id) {
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @GetMapping("/{id}")
+    public CourseDto getById(@PathVariable Long id) {
         return courseService.getCourseById(id);
     }
 
+
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping("path")
+    @PostMapping
     public CourseDto create(@RequestBody CourseDto course) {
 
         return courseService.addCourse(course);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public CourseDto delete(@PathVariable Long id){
 
