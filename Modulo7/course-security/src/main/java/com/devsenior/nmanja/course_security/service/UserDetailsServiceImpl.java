@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
             .orElseThrow(() -> new UsernameNotFoundException("No existe un usuario con el nombre "+ username));
 
         var authorities = user.getRoles().stream()
-            .map(role -> new SimpleGrantedAuthority(role))
+            .map(role -> new SimpleGrantedAuthority(role)) //Convierte cada rolo traido de la base de datos a Authority
             .toList();
 
         return new User(user.getUsername(), user.getPassword(), authorities);

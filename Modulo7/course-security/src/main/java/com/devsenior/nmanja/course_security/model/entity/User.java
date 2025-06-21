@@ -29,7 +29,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER) //Carfa los roles inmediatamente
+    @ElementCollection(fetch = FetchType.EAGER) //Carga los roles inmediatamente junto con el usuario
     @CollectionTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id")) //Crea una tabla enlazada
     @Column(name = "rol")
     private Set<String> roles;
