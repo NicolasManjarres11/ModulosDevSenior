@@ -36,7 +36,7 @@ public class CourseController {
         return courseService.getAllCourses();
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
     @GetMapping("/{id}")
     public CourseDto getById(@PathVariable Long id) {
         return courseService.getCourseById(id);
