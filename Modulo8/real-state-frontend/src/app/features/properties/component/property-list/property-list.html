@@ -1,0 +1,36 @@
+<div>
+
+    @if(loading){
+        <div>Cargando propiedades...</div>
+    }
+    @else if (error){
+        
+    <div>Error cargando las propiedades: {{error}}</div>
+    }
+    @else{
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Price</th>
+                </tr> 
+            </thead>
+            <tbody>
+                @for(property of properties; track $index){
+
+                
+                <tr>
+                    <td>{{property.id}}</td>
+                    <td>{{property.address}}</td>
+                    <td>{{property.city}}</td>
+                    <td>{{property.price | currency}}</td>
+                </tr>
+
+            }
+            </tbody>
+        </table>
+    }
+
+</div>
