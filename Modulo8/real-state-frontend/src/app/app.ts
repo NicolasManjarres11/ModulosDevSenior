@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
-import { PropertyList } from './features/properties/component/property-list/property-list';
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-root', //Etiqueta en HTML
-  imports: [PropertyList], 
+  imports: [RouterOutlet], 
   templateUrl: './app.html', //Plantilla
   styleUrl: './app.css' //Plantilla
 })
 export class App {
-  protected readonly title = ('Nicolas Real State');
+  
 }

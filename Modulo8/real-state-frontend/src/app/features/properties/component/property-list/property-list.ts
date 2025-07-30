@@ -1,9 +1,10 @@
-import { Component, effect, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Property } from '../../model/property.model';
 import { CurrencyPipe } from '@angular/common';
 import { PropertyCard } from '../property-card/property-card';
 import { PropertyService } from '../../service/propertyService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-property-list',
@@ -22,7 +23,7 @@ export class PropertyList implements OnInit{
 
   filterCity = signal<string>("");
 
-  constructor( private service : PropertyService ){
+  constructor( private service : PropertyService, private router:Router ){
     effect(() => {
       if(!this.filterCity()){
         this.properties.set(this.allProperties());
@@ -41,12 +42,7 @@ export class PropertyList implements OnInit{
   }
 
   showDetail(id: number){
-
-    this.service.getProperty(id)
-      .then (prop => alert('Han seleccionado la propiedad: '+ JSON.stringify(prop)))
-      .catch(error => this.error.set(error))
-
-    
+    this.router.navigate(['properties', id]);
   }
 
   searchProperties(){

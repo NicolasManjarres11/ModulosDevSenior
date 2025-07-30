@@ -1,6 +1,10 @@
 <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
-    <img src="https://i.pinimg.com/736x/72/f5/85/72f5857754f4d76a709900d3253a8f0f.jpg" alt="Imagen"
-    class="w-full h-48 object-cover rounded-t-xl">
+    <img 
+    [src]="data().imageUrl" 
+    [alt]="'Imagen de '+ data().address"
+    class="w-full h-48 object-cover rounded-t-xl"
+    onerror="this.onerror=null;this.src='https://i.pinimg.com/736x/72/f5/85/72f5857754f4d76a709900d3253a8f0f.jpg'"
+    >
 
     <div class="p-6">
         <h2 class="text-2xl font-bold text-gray-900 mb-2">{{data().address}}</h2>

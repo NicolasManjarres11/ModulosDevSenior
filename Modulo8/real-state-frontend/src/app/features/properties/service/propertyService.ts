@@ -143,5 +143,17 @@ export class PropertyService {
 
     })
   }
+
+  addNewProperty(property : Property) : void{
+
+    //Generar el id y agregarlo a la lista de elementos
+
+    const newId = Math.max( ...this.properties().map( p => p.id)) + 1;
+
+    const propertyToAdd = {...property, id: newId};
+
+    this.properties.update( data => [...data, propertyToAdd]);
+
+  }
   
 }
