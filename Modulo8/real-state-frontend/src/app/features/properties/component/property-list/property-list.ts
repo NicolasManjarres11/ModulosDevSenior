@@ -4,11 +4,11 @@ import { Property } from '../../model/property.model';
 import { CurrencyPipe } from '@angular/common';
 import { PropertyCard } from '../property-card/property-card';
 import { PropertyService } from '../../service/propertyService';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-property-list',
-  imports: [PropertyCard, FormsModule],
+  imports: [PropertyCard, FormsModule, RouterLink],
   templateUrl: './property-list.html',
   styleUrl: './property-list.css'
 })
@@ -45,14 +45,6 @@ export class PropertyList implements OnInit{
     this.router.navigate(['properties', id]);
   }
 
-  searchProperties(){
-/*     if(!this.filterCity){
-      this.properties = this.allProperties;
-    } else{
-      this.properties = this.allProperties
-        .filter(p => p.city.toLowerCase().includes(this.filterCity.toLowerCase()));
-    } */
-  }
 
   private loadProperties(): void {
 

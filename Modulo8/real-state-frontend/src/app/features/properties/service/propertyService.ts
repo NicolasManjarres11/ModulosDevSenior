@@ -134,7 +134,7 @@ export class PropertyService {
           .filter(p => p.id == id);
 
         if(property.length == 0){
-          reject(`No se ha encontrado la propiedad con id` + id)
+          reject(`No se ha encontrado la propiedad con id: ` + id)
         } else {
           resolve(property[0])
         }
@@ -155,5 +155,19 @@ export class PropertyService {
     this.properties.update( data => [...data, propertyToAdd]);
 
   }
-  
+
+  deleteProperty(id : number) : void{
+    this.properties.update(data => data.filter(p => p.id !== id));
+  }
+
+  updateProperty(id: number, property: Property){
+    
+    this.properties.update(data => {
+      const index = data.findIndex(p => p.id === id);
+      if(index > -1){
+        data[index] = property
+      }
+      return data;
+    })
+  }
 }
