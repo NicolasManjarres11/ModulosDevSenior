@@ -8,6 +8,7 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-property-list',
+  standalone: true,
   imports: [PropertyCard, FormsModule, RouterLink],
   templateUrl: './property-list.html',
   styleUrl: './property-list.css'
@@ -47,24 +48,29 @@ export class PropertyList implements OnInit{
 
 
   private loadProperties(): void {
-
-    
     this.loading.set(true);
     this.error.set(undefined);
 
     this.service.getAllProperties()
-        .then(data => {
-
-          
-          this.allProperties.set(data);
-          this.properties.set(this.allProperties());
-          this.loading.set(false)
-
-          
-        })
-        .catch(error =>
-          this.error.set(error));
-
+        .subscribe({
+          next: (data) => {
+            this.allProperties.set(data);
+            this.properties.set(this.allProperties());
+            this.loading.set(false);
+          },
+          error: (error) => {
+            let errorMessage = 'Error al cargar las propiedades';
+            
+            if (error.error && error.error.message) {
+              errorMessage = error.error.message;
+            } else if (error.message) {
+              errorMessage = error.message;
+            }
+            
+            this.error.set(errorMessage);
+            this.loading.set(false);
+          }
+        });
   }
 
 }

@@ -4,6 +4,7 @@ import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-property-card',
+  standalone: true,
   imports: [CurrencyPipe],
   templateUrl: './property-card.html',
   styleUrl: './property-card.css'
@@ -16,7 +17,7 @@ export class PropertyCard {
 
   num = input<number>(1) ;  //Campo opcional
 
-  detail = output<number>();
+  detail = output<number>(); //Output del id de la propiedad
 
   onClickDetails(){
     this.detail.emit(this.data().id); 
