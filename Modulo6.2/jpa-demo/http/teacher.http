@@ -1,0 +1,28 @@
+###
+
+GET http://localhost:8080/api/teachers
+
+###
+
+POST http://localhost:8080/api/teachers
+Content-Type: application/json
+
+{
+    "document" : 83489443,
+    "firstName": "Michonee",
+    "secondName": "Racoon",
+    "lastname": "Tahrabiahh",
+    "secondLastname": "Duroh",
+    "email": "michontadoruKDKDK@gmail.es",
+    "indicative":"+57",
+    "phoneNumber": "75348744",
+    "address": "Cra 1 # 2 - 03",
+    "aditionalAddress": "Av Guayacanes",
+    "salary": 120000,
+    "city": "MARACACHAFA"
+
+}
+
+###
+
+GET http://localhost:8080/api/teachers/by_city/BOG

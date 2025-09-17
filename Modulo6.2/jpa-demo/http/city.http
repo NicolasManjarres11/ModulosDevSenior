@@ -1,0 +1,30 @@
+###
+GET http://localhost:8080/api/cities
+
+
+###
+
+POST http://localhost:8080/api/cities
+Content-Type: application/json
+
+{
+    "name": "VILLAVICENCIO",
+    "department": "META"
+}
+
+
+###
+
+PUT http://localhost:8080/api/cities/MARACACHAFA
+Content-Type: application/json
+
+{
+    "department": "CALIFORNIA"
+}
+
+### Lista de ciudades por departamente
+
+GET http://localhost:8080/api/cities/by_department/CALIFORNIA
+
+
+
