@@ -25,13 +25,14 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-    "username": "nicmango",
+    "username": "dmedina",
     "password": "admin123",
-    "fullName": "Nicolas Manjarres",
-    "email": "nmanja@devsenior.es",
+    "fullName": "Dayana Medina",
+    "email": "dmedi@devsenior.es",
     "phone": "12345678",
-    "intereses": ["Programación, juegos, futbol"],
-    "profile": "Student",
-    "school": "Ibero",
-    "program": "Ing de Software"
+    "intereses": ["Programación, Moda, Viajes"],
+    "profile": "Employee",
+    "company": "Ibero",
+    "position": "CEO",
+    "seniority": "Senior"
 }

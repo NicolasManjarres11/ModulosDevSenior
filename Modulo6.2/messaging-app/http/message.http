@@ -1,0 +1,14 @@
+###
+
+GET http://localhost:8080/api/messages/nicmango/dmedina
+###
+
+POST http://localhost:8080/api/messages
+Content-Type: application/json
+
+{
+    "senderId": "nicmango",
+    "receiverId": "dmedina",
+    "content": "Hola buenas noches!!",
+    "type": "text"
+}
