@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@Schema(description = "Respuesta de la información completa de los cursos")
+@Schema(description = "Respuesta de la información completa de los cursos") //Documentacion de API Swagger 
 @Data
 
 public class CourseResponse {
