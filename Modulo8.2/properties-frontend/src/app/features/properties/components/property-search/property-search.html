@@ -1,0 +1,10 @@
+    <section class="row mb-1 p-3 shadow-sm">
+        <input type="text" class="form-control-lg col-10 mx-2" 
+        [placeholder]="placeholder()"
+        [(ngModel)]="queryString"/>porq
+        <button type="button" class="btn btn-primary col" 
+            (click)="onSearch()"
+            [disabled]="!isValid()">
+                Buscar
+        </button>
+    </section>

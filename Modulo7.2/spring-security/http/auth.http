@@ -1,0 +1,39 @@
+###
+
+GET http://localhost:8080/api/public
+###
+
+GET http://localhost:8080/api/hello
+
+
+###
+
+GET http://localhost:8080/api/hello
+Authorization: Basic bmljbzphZG1pbjEyMw==
+###
+
+GET http://localhost:8080/api/hello
+Authorization: Basic ZGF5YW5hOmFkbWluMTIz
+
+###
+
+POST http://localhost:8080/api/hello
+Authorization: Basic bmljbzphZG1pbjEyMw==
+Content-Type: application/json
+
+{
+    "name": "Nicolas"
+}
+
+###
+
+POST http://localhost:8080/api/hello
+Authorization: Basic ZGF5YW5hOmFkbWluMTIz
+Content-Type: application/json
+
+{
+    "name": "Dayana"
+}
+
+
+

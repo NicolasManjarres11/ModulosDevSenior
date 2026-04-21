@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-db
+spec:
+  selector:
+    matchLabels:
+      app: bibliokeep
+  template:
+    metadata:
+      labels:
+        app: bibliokeep
+    spec:
+      automountServiceAccountToken: false
+      containers:
+      - name: db
+        image: postgres:18-alpine
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+          - name: POSTGRES_USER
+            valueFrom: { secretKeyRef: {name : 'db-secret', key: username}}
+          - name: POSTGRES_PASSWORD
+            valueFrom: { secretKeyRef: {name : 'db-secret', key: password}}
+
+        ports:
+        - containerPort: 5432
+
+        volumeMounts:
+          - name: db-storage
+            mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+
+
+
+

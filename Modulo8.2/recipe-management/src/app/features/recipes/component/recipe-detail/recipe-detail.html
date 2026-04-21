@@ -1,0 +1,25 @@
+<div class="container">
+    <button class="btn btn-success mb-4" (click)="onBack()">Volver al listado</button>
+ <h2 class="text-center"> {{ recipe().title}}</h2>
+ <img class="d-block mx-auto" [src]="recipe().imageUrl" [alt]="recipe().title">
+ <p class="text-center mt-3 mb-3">{{recipe().description}}</p>
+ <div class="row">
+    <div class="col-12 col-sm">
+        <h5>Ingredientes</h5>
+        <ul>
+        @for (item of recipe().ingredients; track $index) {
+            <li> <em>{{item.quantity}} {{item.units}} </em> - {{item.name}}</li>
+        }
+        </ul>
+
+    </div>
+    <div class="col-12 col-sm">
+        <h5>Instrucciones</h5>
+            <ol>
+        @for (item of recipe().instructions; track $index) {
+            <li>{{item}}</li>
+        }
+            </ol>
+    </div>
+ </div>
+</div>

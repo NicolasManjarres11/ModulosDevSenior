@@ -1,0 +1,19 @@
+<main class="row mt-5">
+
+@if (property()) {
+
+
+    <img class="col-12 col--6 w-50" [src]="property()!.image" [alt]="property()!.address" >
+    <div class="col-12 col-md-6">
+        <h2 class="text-center">{{property()!.address}}</h2>
+        <h4 class="d-flex justify-content-end">{{property()!.price | currency:'EUR':'symbol-narrow':'1.2-2'}}</h4>
+        <p>{{property()!.description}}</p>
+        <div class="row">
+            <div class="col text-center">{{property()!.bedrroms | number}} Habitaciones</div>
+            <div class="col text-center">{{property()!.bathroom | number}} Baños</div>
+        </div>
+    </div>
+}@else {
+    <h3>No hay informacion disponible</h3>
+}
+</main>

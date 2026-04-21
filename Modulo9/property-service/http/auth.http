@@ -1,0 +1,86 @@
+### Login de usuario
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### Login con credenciales inválidas
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "usuario_inexistente",
+  "password": "password123"
+}
+
+### Login sin username (validación)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "password": "admin123"
+}
+
+### Login sin password (validación)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin"
+}
+
+### Registro de nuevo usuario
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123",
+  "email": "adminadmin@example.com",
+  "fullName": "admin"
+}
+
+### Registro con username existente (error)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "password123",
+  "email": "otro@example.com",
+  "fullName": "Otro Usuario"
+}
+
+### Registro con email existente (error)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "otro_usuario",
+  "password": "password123",
+  "email": "admin@example.com",
+  "fullName": "Otro Usuario"
+}
+
+### Registro sin campos obligatorios (validación)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "usuario_incompleto",
+  "password": "123"
+}
+
+### Validar token JWT (reemplazar TOKEN_AQUI con el token recibido del login)
+POST http://localhost:8080/api/auth/validate
+Authorization: Bearer TOKEN_AQUI
+
+### Validar token sin Bearer (error)
+POST http://localhost:8080/api/auth/validate
+Authorization: TOKEN_AQUI
+
+### Validar sin header de autorización (error)
+POST http://localhost:8080/api/auth/validate

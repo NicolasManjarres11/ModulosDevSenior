@@ -1,0 +1,35 @@
+###
+
+GET http://localhost:8080/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWNtYW5nbyIsImlhdCI6MTc2MTY2ODY2MSwiZXhwIjoxNzYxNzU1MDYxfQ.vht9mR6qq9o2NbIKvg4e7Hl8aDEK2FrGe4Gk8kxoIdg
+Accept: application/json
+
+
+###
+POST http://localhost:8080/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaWNtYW5nbyIsImlhdCI6MTc2MTY2ODY2MSwiZXhwIjoxNzYxNzU1MDYxfQ.vht9mR6qq9o2NbIKvg4e7Hl8aDEK2FrGe4Gk8kxoIdg
+Content-Type: application/json
+
+
+{
+    "name": "Zonas",
+    "username": "uyzonas",
+    "password": "admin123",
+    "email": "zonas@gmail.es",
+    "role": "USER"
+}
+###
+
+
+POST http://localhost:8080/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbWVkaW5hIiwiaWF0IjoxNzYxNjY5MDI4LCJleHAiOjE3NjE3NTU0Mjh9.hR9BtZpmG_Fk1LXt2i-GkIdMZA5NannXBWllX_iJNXY
+Content-Type: application/json
+
+
+{
+    "name": "prueba",
+    "username": "prueba",
+    "password": "admin123",
+    "email": "prueba@gmail.es",
+    "role": "USER"
+}

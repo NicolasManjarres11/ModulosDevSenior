@@ -1,0 +1,99 @@
+###
+
+GET http://localhost:8080/api/productos
+
+###
+
+GET http://localhost:8080/api/productos/68f0434515aeb1aefa3c15f9
+
+###
+
+POST  http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "name": "Computadora HP Pavilion 15",
+  "description": "Laptop HP de 15.6 pulgadas con procesador AMD Ryzen 5.",
+  "price": 18500,
+  "tags": ["computadoras", "laptops"],
+  "specifications": {
+    "procesador": "AMD Ryzen 5 5500U",
+    "pantalla": "15.6\" FHD"
+  }
+}
+
+
+###
+
+POST  http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "name": "Camisa Formal Slim Fit",
+  "description": "Camisa blanca de vestir para caballero, corte slim fit.",
+  "price": 105000,
+  "tags": ["Ropa","Formal"],
+  "specifications": {
+    "talla": "M",
+    "color": "Blanco",
+    "material": "Algodón 100%",
+    "corte": "Slim fit",
+    "instrucciones_lavado": "Lavado a máquina en frío, no usar blanqueador"
+  }
+}
+
+###
+
+POST  http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "name": "El Principito",
+  "description": "Libro clásico de Antoine de Saint-Exupéry en español.",
+  "price": 199,
+  "tags": ["Libros", "Fantasia"],
+  "specifications": {
+    "autor": "Antoine de Saint-Exupéry",
+    "idioma": "Español",
+    "paginas": 96,
+    "editorial": "Editorial Salamandra",
+    "isbn": "9788498381498",
+    "formato": "Tapa blanda"
+  }
+}
+
+###
+PUT http://localhost:8080/api/productos/68f0434515aeb1aefa3c15f9
+Content-Type: application/json
+
+{
+  "name": "El Principito (Edición Actualizada)",
+  "description": "Libro clásico actualizado de Antoine de Saint-Exupéry en español.",
+  "price": 250,
+  "tags": ["Libros", "Fantasia"],
+  "specifications": {
+    "autor": "Antoine de Saint-Exupéry",
+    "idioma": "Español",
+    "paginas": 120,
+    "editorial": "Editorial Salamandra",
+    "isbn": "9788498381498",
+    "formato": "Tapa dura"
+  }
+}
+
+###
+DELETE  http://localhost:8080/api/productos/68f0434515aeb1aefa3c15f9
+
+###
+GET http://localhost:8080/api/productos/buscar?text=c
+
+###
+GET http://localhost:8080/api/productos/por-tag?tag=l
+
+###
+
+GET http://localhost:8080/api/productos/especificaciones?key=talla&value=M
+
+
+
+

@@ -1,0 +1,92 @@
+@startuml
+package service {
+
+class TeacherService{
+ myExams()
+ gradeExam()
+ examReport()
+ createExam()
+}
+
+class StudentService{
+ myExams()
+PendingExams()
+ attendExam(Exam)
+}
+}
+
+
+
+package model {
+
+abstract class User {
+ - Long code
+ - String name
+ - String username
+ - String password
+ 
+}
+
+class Teacher extends User{
+
+}
+
+class Student extends User{
+
+}
+
+class Exam{
+ - String title
+ -String subjetc
+ - String description
+ - Date initialDate
+ - Date FinalDate
+}
+
+class Question{
+ - String title
+ - String description
+ - Double grade
+ - 
+}
+
+
+enum QuestionType{
+ OPEN
+ MULTIPLE
+
+}
+
+class QuestionOption{
+ - String description
+ - boolean isAnswer
+
+}
+
+class AttendExam {
+  - Date attendDate
+  - Boolean finished
+  + Double grade()
+  + Boolean isGraded()
+  + void finish()
+  
+}
+
+class Answer {
+ - String openAnswer
+ - Double grade
+ - Boolean isGraded;
+}
+
+Exam *-- Question
+QuestionType <-right- Question: type
+Question 0-- QuestionOption
+Teacher "1" -- "0..*" Exam: publish
+Student "1" -- "0..*" AttendExam: attend
+AttendExam "0..*" -left- "1" Exam: "             "
+AttendExam *-- Answer
+Question "1" -right- Answer: "          "
+Answer -- "0..1" QuestionOption
+
+}
+@enduml

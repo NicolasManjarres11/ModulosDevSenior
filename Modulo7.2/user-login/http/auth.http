@@ -1,0 +1,36 @@
+###
+
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+    "name": "Nicolas",
+    "username": "nicmango",
+    "password": "admin123",
+    "email": "nicolas@gmail.es",
+    "role": "ADMIN"
+}
+###
+
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+    "name": "Dayana",
+    "username": "dmedina",
+    "password": "admin123",
+    "email": "dayana@gmail.es",
+    "role": "USER"
+}
+###
+
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+    "name": "Mirrin ga",
+    "username": "mrrnga",
+    "password": "admin123",
+    "email": "mirringa@gmail.es",
+    "role": "GUEST"
+}

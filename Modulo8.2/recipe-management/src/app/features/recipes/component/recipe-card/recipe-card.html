@@ -1,0 +1,9 @@
+<div class="card">
+    <img class="card-img" [src]="recipe().imageUrl" [alt]="recipe().title">
+    <div class="card-body">
+        <h4 class="card-title">{{recipe().title}}</h4>
+        <p class="card-text">{{recipe().description}}</p>
+        <button class="btn btn-primary w-100" (click)="onShowRecipe()">Ver receta</button>
+    </div>
+
+</div>

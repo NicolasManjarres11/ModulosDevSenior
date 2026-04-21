@@ -1,0 +1,51 @@
+GET http://localhost:8080/api/teacher/111/exams
+
+
+###
+
+GET http://localhost:8080/api/teacher
+
+###
+
+POST http://localhost:8080/api/teacher/111/exams
+Content-Type: application/json
+
+{
+    "title": "Variables y tipos de datos",
+    "description": "Evaluación de compresión de variables y tipos de datos",
+    "initialDateTime": "2025-09-03 01:00:00",
+    "finalDateTime": "2025-09-05 22:00:00",
+    "questions": [
+        {
+            "title": "Defina que es una variable",
+            "description": "Explique brevemente qué es una variable en programación",
+            "type":"OPEN",
+            "grade": 3.0
+        },
+        {
+            "title": "Es un tipo de dato numérico",
+            "description": "Selecciona solo una opción",
+            "type":"MULTIPLE",
+            "grade": 2.0,
+            "options": [
+                {
+                    "description": "int",
+                    "isAnswer": true
+                },
+                {
+                    "description": "chart",
+                    "isAnswer": false
+                },
+                {
+                    "description": "boolean",
+                    "isAnswer": false
+                },
+                {
+                    "description": "String",
+                    "isAnswer": false
+                }
+            ]
+        }
+    ]
+}
+

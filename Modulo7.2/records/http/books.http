@@ -1,0 +1,18 @@
+###
+
+GET http://localhost:8080/api/books
+###
+
+POST  http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+    "title": "Aprendiendo Java",
+    "author": "Nicolas",
+    "description": "Libro de fantasia"
+}
+
+
+###
+
+GET http://localhost:8080/api/books/Aprendiendo Java

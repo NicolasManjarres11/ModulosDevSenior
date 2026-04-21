@@ -1,0 +1,83 @@
+@host=http://localhost:8082
+
+###
+GET {{host}}/api/v1/products
+
+###
+GET {{host}}/api/v1/products/1
+
+###
+POST {{host}}/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "Laptop Gaming",
+  "description": "High-performance gaming laptop with RTX 4070",
+  "price": 1299.99,
+  "imageUrl": "https://example.com/laptop-gaming.jpg"
+}
+
+###
+PUT {{host}}/api/v1/products/1
+Content-Type: application/json
+
+{
+  "name": "Laptop Gaming Pro",
+  "description": "Updated high-performance gaming laptop with RTX 4080",
+  "price": 1499.99,
+  "imageUrl": "https://example.com/laptop-gaming-pro.jpg"
+}
+
+###
+DELETE {{host}}/api/v1/products/1
+
+###
+GET {{host}}/api/v1/products/search?name=Laptop
+
+###
+POST {{host}}/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "Mouse Wireless",
+  "description": "Ergonomic wireless mouse with long battery life",
+  "price": 49.99,
+  "imageUrl": "https://example.com/mouse-wireless.jpg"
+}
+
+###
+POST {{host}}/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "Keyboard Mechanical",
+  "description": "RGB mechanical keyboard with blue switches",
+  "price": 89.99,
+  "imageUrl": "https://example.com/keyboard-mechanical.jpg"
+}
+
+###
+GET {{host}}/api/v1/products/search?name=Mouse
+
+###
+### TEST 404 ERRORS - Product Not Found
+###
+
+###
+GET {{host}}/api/v1/products/999
+
+###
+PUT {{host}}/api/v1/products/999
+Content-Type: application/json
+
+{
+  "name": "Product Not Found",
+  "description": "This should return 404",
+  "price": 99.99,
+  "imageUrl": "https://example.com/not-found.jpg"
+}
+
+###
+DELETE {{host}}/api/v1/products/999
+
+

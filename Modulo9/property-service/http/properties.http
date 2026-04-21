@@ -1,0 +1,97 @@
+### 1. Crear una nueva propiedad
+POST http://localhost:8080/api/properties
+Content-Type: application/json
+
+{
+    "address": "Calle 123 #45-67",
+    "city": "Bogotá",
+    "price": 150000.00,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "imageUrl": "https://example.com/property1.jpg",
+    "description": "Hermosa casa de 3 habitaciones en excelente ubicación"
+}
+
+### 2. Obtener todas las propiedades
+GET http://localhost:8080/api/properties
+
+### 3. Obtener una propiedad por ID
+GET http://localhost:8080/api/properties/1
+
+### 4. Actualizar una propiedad existente
+PUT http://localhost:8080/api/properties/1
+Content-Type: application/json
+
+{
+    "address": "Calle 123 #45-67 Actualizada",
+    "city": "Bogotá",
+    "price": 175000.00,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "imageUrl": "https://example.com/property1-updated.jpg",
+    "description": "Casa renovada con habitación adicional"
+}
+
+### 5. Eliminar una propiedad
+DELETE http://localhost:8080/api/properties/4
+
+### 6. Crear propiedad con datos mínimos requeridos
+POST http://localhost:8080/api/properties
+Content-Type: application/json
+
+{
+    "address": "Carrera 15 #30-25",
+    "city": "Medellín",
+    "price": 200000.00,
+    "bedrooms": 2,
+    "bathrooms": 1
+}
+
+### 7. Probar validaciones - Dirección vacía (debe fallar)
+POST http://localhost:8080/api/properties
+Content-Type: application/json
+
+{
+    "address": "",
+    "city": "Cali",
+    "price": 120000.00,
+    "bedrooms": 2,
+    "bathrooms": 1
+}
+
+### 8. Probar validaciones - Precio negativo (debe fallar)
+POST http://localhost:8080/api/properties
+Content-Type: application/json
+
+{
+    "address": "Avenida 68 #45-32",
+    "city": "Barranquilla",
+    "price": -50000.00,
+    "bedrooms": 1,
+    "bathrooms": 1
+}
+
+### 9. Probar validaciones - Campos faltantes (debe fallar)
+POST http://localhost:8080/api/properties
+Content-Type: application/json
+
+{
+    "address": "Calle 80 #12-34",
+    "price": 100000.00
+}
+
+### 10. Buscar propiedad inexistente (debe retornar 404)
+GET http://localhost:8080/api/properties/10
+
+
+### 11. Obtener lista de propiedades por ciudad
+GET http://localhost:8080/api/properties/city/Bogotá
+
+### 12. Obtener lista de propiedades por ciudad - Medellín
+GET http://localhost:8080/api/properties/city/Medellín
+
+### 13. Obtener lista de propiedades por ciudad - Cali
+GET http://localhost:8080/api/properties/city/Cali
+
+### 14. Obtener lista de propiedades por ciudad inexistente
+GET http://localhost:8080/api/properties/city/CiudadInexistente

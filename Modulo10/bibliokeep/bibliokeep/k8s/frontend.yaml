@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bibliokeep-front
+data:
+  API_URL: http://bibliokeep-backend-service:8080
+  nginx.conf: |
+    server {
+      listen 80;
+      location / {
+        root /usr/share/nginx/html;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+      }
+      # Reverse Proxy para redirigir llamadas a la API
+      location /api/ {
+        proxy_pass http://bibliokeep-backend-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+      }
+    }
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bibliokeep-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bibliokeep-fe
+  template:
+    metadata:
+      labels:
+        app: bibliokeep-fe
+    spec:
+      containers:
+      - name: frontend
+        image: 'manjarres/bibliokeep-frontend'
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: nginx-host
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: nginx.conf
+      volumes:
+      - name: nginx-host
+        configMap:
+          name: bibliokeep-front
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bibliokeep-frontend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: bibliokeep-fe
+  ports:
+  - port: 80
+    targetPort: 80
+
+

@@ -1,0 +1,14 @@
+<div class="container mt-4">
+    @if (showList()) {
+    <h2>Mis recetas</h2>
+    <div class="row">
+        @for (recipe of recipes(); track recipe.id) {
+            <app-recipe-card class="col-md-6 col-lg-4 mb-3" 
+            [recipe]="recipe"
+            (show)="onShowRecipe($event)"></app-recipe-card>
+        }
+    </div>
+} @else {
+<app-recipe-detail [recipe]="recipeSelected()" (back)="backToList()"></app-recipe-detail>
+}
+</div>

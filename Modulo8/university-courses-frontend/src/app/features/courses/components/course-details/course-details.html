@@ -1,0 +1,72 @@
+<div class="container mx-auto p-8 bg-gray-50 min-h-screen flex flex-col items-center">
+    <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-8">
+      <button
+        (click)="goBack()"
+        class="mb-6 flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-300 font-semibold"
+      >
+        <svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        Volver a la lista de cursos
+      </button>
+  
+      @if (loading()) {
+        <div class="flex justify-center items-center h-64">
+          <div class="animate-spin rounded-full h-20 w-20 border-b-4 border-blue-500"></div>
+          <p class="ml-4 text-2xl text-blue-600">Cargando detalles del curso...</p>
+        </div>
+      } @else if (error()) {
+        <div class="text-center p-8 text-2xl text-red-600 bg-red-100 border border-red-400 rounded-lg shadow-md">
+          <p class="font-bold mb-2">¡Error!</p>
+          <p>{{ error() }}</p>
+        </div>
+      } @else if (courseDetails()) {
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2">
+            <img
+              [src]="courseDetails()!.imageUrl"
+              [alt]="courseDetails()!.name"
+              class="w-full h-auto rounded-xl shadow-md object-cover"
+              onerror="this.onerror=null;this.src='[https://placehold.co/600x450/CCCCCC/666666?text=Course+Detail](https://placehold.co/600x450/CCCCCC/666666?text=Course+Detail)';"
+            />
+          </div>
+          <div class="md:w-1/2">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">{{ courseDetails()!.name }}</h1>
+            <p class="text-gray-600 text-xl mb-6">{{ courseDetails()!.code }}</p>
+            <p class="text-gray-700 text-lg mb-4">{{ courseDetails()!.description }}</p>
+  
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div class="bg-blue-50 p-4 rounded-lg shadow-sm">
+                <p class="text-blue-800 font-semibold">Créditos:</p>
+                <p class="text-blue-700 text-lg">{{ courseDetails()!.credits }}</p>
+              </div>
+              <div class="bg-purple-50 p-4 rounded-lg shadow-sm">
+                <p class="text-purple-800 font-semibold">Departamento:</p>
+                <p class="text-purple-700 text-lg">{{ courseDetails()!.department }}</p>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg shadow-sm">
+                <p class="text-green-800 font-semibold">Estudiantes Inscritos:</p>
+                <p class="text-green-700 text-lg">{{ courseDetails()!.enrolledStudents }}</p>
+              </div>
+              <div class="bg-red-50 p-4 rounded-lg shadow-sm">
+                <p class="text-red-800 font-semibold">Cupo Máximo:</p>
+                <p class="text-red-700 text-lg">{{ courseDetails()!.maxStudents }}</p>
+              </div>
+            </div>
+  
+            <!-- Puedes añadir un botón de inscripción aquí también si lo deseas -->
+            <!-- <button
+              class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-300 shadow-md"
+              [disabled]="courseDetails()!.enrolledStudents >= courseDetails()!.maxStudents"
+            >
+              Inscribirse
+            </button> -->
+          </div>
+        </div>
+      } @else {
+        <div class="text-center p-8 text-2xl text-gray-500 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+          <p>No se pudieron cargar los detalles del curso.</p>
+        </div>
+      }
+    </div>
+  </div>

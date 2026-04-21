@@ -1,0 +1,10 @@
+###
+
+GET http://localhost:8080/api/hr/reports/employees
+###
+
+GET http://localhost:8080/api/hr/reports/employees/department?department=8
+
+###
+
+GET http://localhost:8080/api/hr/reports/employees/country?id=CA

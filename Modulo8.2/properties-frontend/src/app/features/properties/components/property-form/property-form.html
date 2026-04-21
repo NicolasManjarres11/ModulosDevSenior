@@ -1,0 +1,97 @@
+<form [formGroup]="propertyGroup" (submit)="onSave()">
+<main class="mt-5">
+    <h3 class="mb-3">Nuevo producto</h3>
+    <div class="mb-3">
+        <label for="address" class="form-label">Dirección</label>
+        <input type="text" class="form-control" id="address" placeholder="Cra 1 # 2 - 3" 
+        formControlName="address"/>
+        @if (propertyGroup.get('address')?.invalid && propertyGroup.get('address')?.touched ) {
+            <p class="small text-danger">La dirección es obligatoria</p>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Descripción</label>
+        <textarea class="form-control" id="description" rows="3"
+        formControlName="description"></textarea>
+    </div>
+            @if (propertyGroup.get('description')?.invalid && propertyGroup.get('description')?.touched ) {
+            <p class="small text-danger">La descripcion es obligatoria</p>
+        }
+    <div class="mb-3">
+        <label for="city" class="form-label">Ciudad</label>
+        <input type="text" class="form-control" id="city" placeholder="Bogotá" 
+        formControlName="city"/>
+    </div>
+            @if (propertyGroup.get('city')?.invalid && propertyGroup.get('city')?.touched ) {
+            <p class="small text-danger">La ciudad es obligatoria</p>
+        }
+    <div class="mb-3">
+        <label for="price" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="price" placeholder="500000" 
+        formControlName="price"/>
+    </div>
+            @if (propertyGroup.get('price')?.invalid && propertyGroup.get('price')?.touched ) {
+                @if (propertyGroup.get('price')?.errors?.['required']) {
+                    <p class="small text-danger">El precio es obligatorio</p>
+                }
+                @if (propertyGroup.get('price')?.errors?.['min']) {
+                    <p class="small text-danger">El precio debe superar los $100</p>
+                }
+            
+        }
+    <div class="row">
+        <div class="mb-3 col">
+        <label for="bedrooms" class="form-label">Habitaciones</label>
+        <input type="number" class="form-control" id="bedrooms" placeholder="4" 
+        formControlName="bedrooms"/>
+        </div>
+            @if (propertyGroup.get('bedrooms')?.invalid && propertyGroup.get('bedrooms')?.touched ) {
+                        @if (propertyGroup.get('bedrooms')?.errors?.['required']) {
+                            <p class="small text-danger">La habitación es obligatoria</p>
+                        }
+                        @if (propertyGroup.get('bedrooms')?.errors?.['min']) {
+                            <p class="small text-danger">Debe tener más de una habitación</p>
+                        }
+                    
+                }
+        <div class="mb-3 col">
+            <label for="bathrooms" class="form-label">Baños</label>
+            <input type="number" class="form-control" id="bathrooms" placeholder="3" 
+            formControlName="bathrooms"/>
+        </div>
+            @if (propertyGroup.get('bathrooms')?.invalid && propertyGroup.get('bathrooms')?.touched ) {
+                @if (propertyGroup.get('bathrooms')?.errors?.['required']) {
+                    <p class="small text-danger">Los baños son obligatorios</p>
+                }
+                @if (propertyGroup.get('bathrooms')?.errors?.['min']) {
+                    <p class="small text-danger">Debe tener más de un baño</p>
+                }
+                @if (propertyGroup.get('bathrooms')?.errors?.['max']) {
+                    <p class="small text-danger">Debe tener menos de 5 baños</p>
+                }
+            
+        }
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">URL de Imagen</label>
+        <input type="text" class="form-control" id="image" placeholder="http://prueba.es" 
+        formControlName="image"/>
+    </div>
+
+                @if (propertyGroup.get('image')?.invalid && propertyGroup.get('image')?.touched ) {
+                @if (propertyGroup.get('image')?.errors?.['required']) {
+                    <p class="small text-danger">La dirección URL es obligatoria</p>
+                }
+                @if (propertyGroup.get('image')?.errors?.['pattern']) {
+                    <p class="small text-danger">Debe ingresar una URL válida</p>
+                }
+            
+        }
+    
+    <div class="row gap-3 ms-1 me-1 mt-3 mb-3">
+        <button type="submit" class="btn btn-primary col" [disabled]="propertyGroup.invalid">Guardar</button>
+        <button type="reset" class="btn btn-secondary col">Limpiar</button>
+    </div>
+
+</main>
+</form>

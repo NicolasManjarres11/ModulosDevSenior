@@ -1,0 +1,14 @@
+spring:
+    application:
+        name: actuator-postgresql
+    datasource:
+        url: jdbc:mysql://localhost:3306/nombre_base_datos
+        username: myuser
+        password: secret
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update
+server:
+    port: 8082
+
