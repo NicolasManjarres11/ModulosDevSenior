@@ -9,6 +9,11 @@ spring:
     jpa:
         hibernate:
             ddl-auto: update
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
 server:
     port: 8082
 

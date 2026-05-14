@@ -1,0 +1,6 @@
+### 
+
+POST http://localhost:8082/api/notification
+Content-Type: text/plain
+
+ALERTA: Se está calentando la máquina 2
